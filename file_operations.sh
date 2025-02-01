@@ -11,6 +11,7 @@ show_menu(){
 }
 read_menu(){
 	read -p "Enter your choice : " option
+	echo
 	case $option in 
 		1) read -p "Enter file name : " name
 		if [ -e "$name" ]; then
@@ -26,7 +27,8 @@ read_menu(){
 		else
 			echo "File not found"
 		fi;;
-		3)ls;;
+		3)	files=$(ls)
+			echo "$files";;
 		4)read -p "Enter file path : " path
 		  read -p "Enter txt to find : " findtxt
 		  read -p "Enter the replacement text : " replace
@@ -41,8 +43,9 @@ read_menu(){
 		find $location -mtime -$days;;
 		6) exit;;
 	esac
+	echo
 }
-while true; do
 show_menu
+while true; do
 read_menu
 done
